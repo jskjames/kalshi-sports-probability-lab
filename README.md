@@ -1,4 +1,4 @@
-# COURTSIDE · Kalshi Sports Market Intelligence
+# Kalshi Sports Market Probability Lab
 
 **When a sports market implies a 70% win probability, how often does that team win?**
 
@@ -8,7 +8,7 @@ An auditable probability-calibration study of NBA winner contracts using real pu
 
 ### Live Dashboard
 
-[Explore the interactive dashboard](https://jskjames.github.io/kalshi-sports-intelligence/)
+[Explore the interactive dashboard](https://jskjames.github.io/kalshi-sports-probability-lab/)
 
 Open **docs/index.html** in a browser. The dashboard uses bundled data and needs no API key, Python installation, account or backend. Start with the one-hour horizon, inspect the calibration curve, then read the chronological holdout comparison and the game ledger.
 
@@ -76,7 +76,7 @@ tests/          Data-leakage, schema, scoring and outcome-rule tests
 
 The interactive dashboard is publicly available through GitHub Pages:
 
-[Open the live dashboard](https://jskjames.github.io/kalshi-sports-intelligence/)
+[Open the live dashboard](https://jskjames.github.io/kalshi-sports-probability-lab/)
 
 ## Data attribution
 
