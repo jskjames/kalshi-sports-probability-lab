@@ -1,0 +1,38 @@
+{
+  "league": "NBA",
+  "collected_at": "2026-09-18T00:34:25.490996+00:00",
+  "cutoff": {
+    "market_positions_last_updated_ts": "2026-07-19T00:00:00Z",
+    "market_settled_ts": "2026-07-19T00:00:00Z",
+    "orders_updated_ts": "2026-07-19T00:00:00Z",
+    "trades_created_ts": "2026-07-19T00:00:00Z"
+  },
+  "discovery": [
+    {
+      "endpoint": "/markets",
+      "rows": 0,
+      "more_available": false
+    },
+    {
+      "endpoint": "/historical/markets",
+      "rows": 1000,
+      "more_available": true
+    }
+  ],
+  "discovered_markets": 1000,
+  "discovered_events": 500,
+  "selected_events": 500,
+  "linked_events": 499,
+  "bars": 553791,
+  "exclusion_counts": {
+    "missing_or_ambiguous_schedule": 1
+  },
+  "exclusions": [
+    {
+      "event": "KXNBAGAME-26MAY30SASOKC",
+      "reason": "missing_or_ambiguous_schedule"
+    }
+  ],
+  "sampling": "Latest settlement timestamps, capped before exclusions; one 1000-market page per tier",
+  "start_time_limitation": "Latest retrospective scheduled start, not independently verified actual tipoff; schedule revision history unavailable."
+}

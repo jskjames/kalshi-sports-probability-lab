@@ -1,0 +1,825 @@
+{
+  "league": "NBA",
+  "games": 499,
+  "bars": 553791,
+  "snapshots": 1877,
+  "start_date": "2026-02-13",
+  "end_date": "2026-06-14",
+  "validation_start": "2026-04-19",
+  "test_start": "2026-05-12",
+  "common_games": 382,
+  "horizons": {
+    "24h": {
+      "available": {
+        "n": 387,
+        "brier": 0.1749119509043928,
+        "log_loss": 0.5235493962684588
+      },
+      "common_cohort": {
+        "n": 382,
+        "brier": 0.17384142670157074,
+        "log_loss": 0.5213919246207961
+      },
+      "calibration": [
+        {
+          "bucket": 0,
+          "n": 12,
+          "predicted": 0.07958333333333333,
+          "observed": 0.0,
+          "wilson": [
+            0.0,
+            0.24249400665523077
+          ]
+        },
+        {
+          "bucket": 1,
+          "n": 31,
+          "predicted": 0.14532258064516132,
+          "observed": 0.06451612903225806,
+          "wilson": [
+            0.017874783521915114,
+            0.20718636736297597
+          ]
+        },
+        {
+          "bucket": 2,
+          "n": 31,
+          "predicted": 0.2488709677419355,
+          "observed": 0.12903225806451613,
+          "wilson": [
+            0.05134284374629271,
+            0.28852406256305896
+          ]
+        },
+        {
+          "bucket": 3,
+          "n": 40,
+          "predicted": 0.35787500000000005,
+          "observed": 0.4,
+          "wilson": [
+            0.2634832568429225,
+            0.554041063396534
+          ]
+        },
+        {
+          "bucket": 4,
+          "n": 43,
+          "predicted": 0.44930232558139543,
+          "observed": 0.5116279069767442,
+          "wilson": [
+            0.3675230846944968,
+            0.6538255245328106
+          ]
+        },
+        {
+          "bucket": 5,
+          "n": 44,
+          "predicted": 0.5492045454545454,
+          "observed": 0.5454545454545454,
+          "wilson": [
+            0.4006618319896235,
+            0.6829476585777876
+          ]
+        },
+        {
+          "bucket": 6,
+          "n": 59,
+          "predicted": 0.6474576271186441,
+          "observed": 0.6440677966101694,
+          "wilson": [
+            0.5165549598185535,
+            0.7539670859618643
+          ]
+        },
+        {
+          "bucket": 7,
+          "n": 48,
+          "predicted": 0.7384375,
+          "observed": 0.8125,
+          "wilson": [
+            0.6806013285071572,
+            0.8980860904515219
+          ]
+        },
+        {
+          "bucket": 8,
+          "n": 62,
+          "predicted": 0.8568548387096774,
+          "observed": 0.8387096774193549,
+          "wilson": [
+            0.7279366398602292,
+            0.9099593112969078
+          ]
+        },
+        {
+          "bucket": 9,
+          "n": 17,
+          "predicted": 0.9241176470588236,
+          "observed": 1.0,
+          "wilson": [
+            0.8156818649911564,
+            1.0
+          ]
+        }
+      ],
+      "excluded": {
+        "bar_too_old": 110,
+        "no_prior_bar": 2
+      }
+    },
+    "6h": {
+      "available": {
+        "n": 493,
+        "brier": 0.16857180527383367,
+        "log_loss": 0.5071822426331039
+      },
+      "common_cohort": {
+        "n": 382,
+        "brier": 0.17145405759162305,
+        "log_loss": 0.5143443702624593
+      },
+      "calibration": [
+        {
+          "bucket": 0,
+          "n": 18,
+          "predicted": 0.07333333333333333,
+          "observed": 0.0,
+          "wilson": [
+            0.0,
+            0.17587922364664965
+          ]
+        },
+        {
+          "bucket": 1,
+          "n": 40,
+          "predicted": 0.14500000000000002,
+          "observed": 0.075,
+          "wilson": [
+            0.025836025774588905,
+            0.19864233524310101
+          ]
+        },
+        {
+          "bucket": 2,
+          "n": 30,
+          "predicted": 0.2488333333333333,
+          "observed": 0.13333333333333333,
+          "wilson": [
+            0.05309655484054873,
+            0.2968132668203576
+          ]
+        },
+        {
+          "bucket": 3,
+          "n": 50,
+          "predicted": 0.34720000000000006,
+          "observed": 0.34,
+          "wilson": [
+            0.22436949222500358,
+            0.4784617394976701
+          ]
+        },
+        {
+          "bucket": 4,
+          "n": 63,
+          "predicted": 0.4446825396825396,
+          "observed": 0.5555555555555556,
+          "wilson": [
+            0.4331963823868267,
+            0.671529039881079
+          ]
+        },
+        {
+          "bucket": 5,
+          "n": 62,
+          "predicted": 0.5574193548387096,
+          "observed": 0.5967741935483871,
+          "wilson": [
+            0.4725046770040057,
+            0.7097513090408905
+          ]
+        },
+        {
+          "bucket": 6,
+          "n": 66,
+          "predicted": 0.6524242424242425,
+          "observed": 0.6515151515151515,
+          "wilson": [
+            0.5311216021303468,
+            0.7552412593807022
+          ]
+        },
+        {
+          "bucket": 7,
+          "n": 66,
+          "predicted": 0.7524999999999998,
+          "observed": 0.8333333333333334,
+          "wilson": [
+            0.725694128800483,
+            0.9043041665238247
+          ]
+        },
+        {
+          "bucket": 8,
+          "n": 61,
+          "predicted": 0.8559016393442623,
+          "observed": 0.819672131147541,
+          "wilson": [
+            0.7052584365187929,
+            0.8962085987594649
+          ]
+        },
+        {
+          "bucket": 9,
+          "n": 37,
+          "predicted": 0.9258108108108108,
+          "observed": 0.972972972972973,
+          "wilson": [
+            0.8617593013626994,
+            0.9952130255480593
+          ]
+        }
+      ],
+      "excluded": {
+        "bar_too_old": 6
+      }
+    },
+    "1h": {
+      "available": {
+        "n": 498,
+        "brier": 0.16901430722891567,
+        "log_loss": 0.507290859713702
+      },
+      "common_cohort": {
+        "n": 382,
+        "brier": 0.17054339005235603,
+        "log_loss": 0.5114814378526715
+      },
+      "calibration": [
+        {
+          "bucket": 0,
+          "n": 18,
+          "predicted": 0.07250000000000001,
+          "observed": 0.0,
+          "wilson": [
+            0.0,
+            0.17587922364664965
+          ]
+        },
+        {
+          "bucket": 1,
+          "n": 40,
+          "predicted": 0.143125,
+          "observed": 0.075,
+          "wilson": [
+            0.025836025774588905,
+            0.19864233524310101
+          ]
+        },
+        {
+          "bucket": 2,
+          "n": 29,
+          "predicted": 0.24551724137931036,
+          "observed": 0.13793103448275862,
+          "wilson": [
+            0.054974399641121,
+            0.3055899372035148
+          ]
+        },
+        {
+          "bucket": 3,
+          "n": 56,
+          "predicted": 0.3482142857142857,
+          "observed": 0.375,
+          "wilson": [
+            0.26010214326471165,
+            0.5059463409149783
+          ]
+        },
+        {
+          "bucket": 4,
+          "n": 58,
+          "predicted": 0.453103448275862,
+          "observed": 0.5344827586206896,
+          "wilson": [
+            0.40800175043995535,
+            0.6566797767471342
+          ]
+        },
+        {
+          "bucket": 5,
+          "n": 63,
+          "predicted": 0.5592857142857143,
+          "observed": 0.6031746031746031,
+          "wilson": [
+            0.4798091851165779,
+            0.7146808848095326
+          ]
+        },
+        {
+          "bucket": 6,
+          "n": 70,
+          "predicted": 0.6522857142857144,
+          "observed": 0.6571428571428571,
+          "wilson": [
+            0.5403954969794453,
+            0.7575401119773288
+          ]
+        },
+        {
+          "bucket": 7,
+          "n": 65,
+          "predicted": 0.7555384615384615,
+          "observed": 0.8153846153846154,
+          "wilson": [
+            0.7044600616636257,
+            0.8911112801173432
+          ]
+        },
+        {
+          "bucket": 8,
+          "n": 62,
+          "predicted": 0.8548387096774194,
+          "observed": 0.8225806451612904,
+          "wilson": [
+            0.7095843311430399,
+            0.8979356223399475
+          ]
+        },
+        {
+          "bucket": 9,
+          "n": 37,
+          "predicted": 0.93,
+          "observed": 1.0,
+          "wilson": [
+            0.9059421741628021,
+            0.9999999999999999
+          ]
+        }
+      ],
+      "excluded": {
+        "bar_too_old": 1
+      }
+    },
+    "5m": {
+      "available": {
+        "n": 499,
+        "brier": 0.16843977955911824,
+        "log_loss": 0.5059265823424284
+      },
+      "common_cohort": {
+        "n": 382,
+        "brier": 0.17059751308900523,
+        "log_loss": 0.5115395590236936
+      },
+      "calibration": [
+        {
+          "bucket": 0,
+          "n": 20,
+          "predicted": 0.0745,
+          "observed": 0.0,
+          "wilson": [
+            1.3877787807814457e-17,
+            0.1611251580528119
+          ]
+        },
+        {
+          "bucket": 1,
+          "n": 37,
+          "predicted": 0.14554054054054053,
+          "observed": 0.08108108108108109,
+          "wilson": [
+            0.027960574100448707,
+            0.21300679349287915
+          ]
+        },
+        {
+          "bucket": 2,
+          "n": 31,
+          "predicted": 0.2462903225806452,
+          "observed": 0.12903225806451613,
+          "wilson": [
+            0.05134284374629271,
+            0.28852406256305896
+          ]
+        },
+        {
+          "bucket": 3,
+          "n": 54,
+          "predicted": 0.3482407407407407,
+          "observed": 0.37037037037037035,
+          "wilson": [
+            0.25423375191660547,
+            0.5037253264773296
+          ]
+        },
+        {
+          "bucket": 4,
+          "n": 61,
+          "predicted": 0.4523770491803278,
+          "observed": 0.5245901639344263,
+          "wilson": [
+            0.4015715692498603,
+            0.6446951257715445
+          ]
+        },
+        {
+          "bucket": 5,
+          "n": 64,
+          "predicted": 0.562421875,
+          "observed": 0.609375,
+          "wilson": [
+            0.486919178802728,
+            0.7194443081175965
+          ]
+        },
+        {
+          "bucket": 6,
+          "n": 69,
+          "predicted": 0.6532608695652176,
+          "observed": 0.6811594202898551,
+          "wilson": [
+            0.5641587428411345,
+            0.7790523954961666
+          ]
+        },
+        {
+          "bucket": 7,
+          "n": 62,
+          "predicted": 0.7557258064516128,
+          "observed": 0.8064516129032258,
+          "wilson": [
+            0.6914820382117423,
+            0.8856619175970958
+          ]
+        },
+        {
+          "bucket": 8,
+          "n": 64,
+          "predicted": 0.8544531249999999,
+          "observed": 0.828125,
+          "wilson": [
+            0.7178678837734215,
+            0.901222576987552
+          ]
+        },
+        {
+          "bucket": 9,
+          "n": 37,
+          "predicted": 0.9305405405405406,
+          "observed": 1.0,
+          "wilson": [
+            0.9059421741628021,
+            0.9999999999999999
+          ]
+        }
+      ],
+      "excluded": {}
+    }
+  },
+  "model": {
+    "status": "evaluated",
+    "selected_on_validation": "market",
+    "train_games": 420,
+    "validation_games": 56,
+    "refit_games": 477,
+    "test_games": 21,
+    "test_dates": 20,
+    "validation": {
+      "market": {
+        "n": 56,
+        "brier": 0.2370714285714286,
+        "log_loss": 0.6662420515762973
+      },
+      "logistic": {
+        "n": 56,
+        "brier": 0.24768739161508888,
+        "log_loss": 0.7009495158687541
+      }
+    },
+    "unavailable_models": {
+      "isotonic": "Isotonic requires at least 1000 training games by project policy"
+    },
+    "parameters": {
+      "market": {},
+      "logistic": {
+        "intercept": 0.08540674318634,
+        "slope": 1.2045622387770571
+      }
+    },
+    "test": {
+      "market": {
+        "n": 21,
+        "brier": 0.238425,
+        "log_loss": 0.6658909021478606,
+        "brier_95ci": [
+          0.1815102083333333,
+          0.3033299999999998
+        ],
+        "delta_brier_vs_market": 0.0,
+        "delta_95ci": [
+          0.0,
+          0.0
+        ],
+        "calibration": [
+          {
+            "bucket": 1,
+            "n": 1,
+            "predicted": 0.175,
+            "observed": 0.0,
+            "wilson": [
+              0.0,
+              0.7934506856227534
+            ]
+          },
+          {
+            "bucket": 3,
+            "n": 1,
+            "predicted": 0.325,
+            "observed": 0.0,
+            "wilson": [
+              0.0,
+              0.7934506856227534
+            ]
+          },
+          {
+            "bucket": 4,
+            "n": 1,
+            "predicted": 0.46499999999999997,
+            "observed": 0.0,
+            "wilson": [
+              0.0,
+              0.7934506856227534
+            ]
+          },
+          {
+            "bucket": 5,
+            "n": 8,
+            "predicted": 0.5675,
+            "observed": 0.625,
+            "wilson": [
+              0.3057423946026341,
+              0.8631557141763988
+            ]
+          },
+          {
+            "bucket": 6,
+            "n": 9,
+            "predicted": 0.6516666666666667,
+            "observed": 0.3333333333333333,
+            "wilson": [
+              0.12058381838691423,
+              0.6457978644195965
+            ]
+          },
+          {
+            "bucket": 7,
+            "n": 1,
+            "predicted": 0.785,
+            "observed": 1.0,
+            "wilson": [
+              0.20654931437724644,
+              0.9999999999999999
+            ]
+          }
+        ]
+      },
+      "logistic": {
+        "n": 21,
+        "brier": 0.24839005410431264,
+        "log_loss": 0.6864946190241118,
+        "brier_95ci": [
+          0.17382534185637155,
+          0.33076118748451777
+        ],
+        "delta_brier_vs_market": 0.009965054104312657,
+        "delta_95ci": [
+          -0.006470828139010171,
+          0.028232829242249003
+        ],
+        "calibration": [
+          {
+            "bucket": 1,
+            "n": 1,
+            "predicted": 0.14400896512622002,
+            "observed": 0.0,
+            "wilson": [
+              0.0,
+              0.7934506856227534
+            ]
+          },
+          {
+            "bucket": 3,
+            "n": 1,
+            "predicted": 0.31109763572583904,
+            "observed": 0.0,
+            "wilson": [
+              0.0,
+              0.7934506856227534
+            ]
+          },
+          {
+            "bucket": 4,
+            "n": 1,
+            "predicted": 0.47913506740954076,
+            "observed": 0.0,
+            "wilson": [
+              0.0,
+              0.7934506856227534
+            ]
+          },
+          {
+            "bucket": 5,
+            "n": 4,
+            "predicted": 0.5780698520231871,
+            "observed": 0.25,
+            "wilson": [
+              0.04558726080970238,
+              0.6993581574175893
+            ]
+          },
+          {
+            "bucket": 6,
+            "n": 9,
+            "predicted": 0.652882315839189,
+            "observed": 0.5555555555555556,
+            "wilson": [
+              0.266651293495499,
+              0.8112214789023309
+            ]
+          },
+          {
+            "bucket": 7,
+            "n": 4,
+            "predicted": 0.7270120338842454,
+            "observed": 0.5,
+            "wilson": [
+              0.1500389891521544,
+              0.8499610108478456
+            ]
+          },
+          {
+            "bucket": 8,
+            "n": 1,
+            "predicted": 0.8382642939424714,
+            "observed": 1.0,
+            "wilson": [
+              0.20654931437724644,
+              0.9999999999999999
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "sensitivity": [
+    {
+      "max_spread": 0.05,
+      "max_age_seconds": 60,
+      "n": 498,
+      "brier": 0.16901430722891567,
+      "log_loss": 0.507290859713702
+    },
+    {
+      "max_spread": 0.05,
+      "max_age_seconds": 120,
+      "n": 498,
+      "brier": 0.16901430722891567,
+      "log_loss": 0.507290859713702
+    },
+    {
+      "max_spread": 0.05,
+      "max_age_seconds": 300,
+      "n": 499,
+      "brier": 0.16868687374749497,
+      "log_loss": 0.5064304803184234
+    },
+    {
+      "max_spread": 0.1,
+      "max_age_seconds": 60,
+      "n": 498,
+      "brier": 0.16901430722891567,
+      "log_loss": 0.507290859713702
+    },
+    {
+      "max_spread": 0.1,
+      "max_age_seconds": 120,
+      "n": 498,
+      "brier": 0.16901430722891567,
+      "log_loss": 0.507290859713702
+    },
+    {
+      "max_spread": 0.1,
+      "max_age_seconds": 300,
+      "n": 499,
+      "brier": 0.16868687374749497,
+      "log_loss": 0.5064304803184234
+    },
+    {
+      "max_spread": 0.2,
+      "max_age_seconds": 60,
+      "n": 498,
+      "brier": 0.16901430722891567,
+      "log_loss": 0.507290859713702
+    },
+    {
+      "max_spread": 0.2,
+      "max_age_seconds": 120,
+      "n": 498,
+      "brier": 0.16901430722891567,
+      "log_loss": 0.507290859713702
+    },
+    {
+      "max_spread": 0.2,
+      "max_age_seconds": 300,
+      "n": 499,
+      "brier": 0.16868687374749497,
+      "log_loss": 0.5064304803184234
+    }
+  ],
+  "price_comparison": {
+    "games": 471,
+    "midpoint": {
+      "n": 471,
+      "brier": 0.1731644373673036,
+      "log_loss": 0.5176436700548279
+    },
+    "same_bar_trade": {
+      "n": 471,
+      "brier": 0.1730403397027601,
+      "log_loss": 0.5176016682569654
+    }
+  },
+  "subgroups": [
+    {
+      "group": "spread \u2264 2\u00a2",
+      "n": 498,
+      "brier": 0.16901430722891567,
+      "log_loss": 0.507290859713702
+    },
+    {
+      "group": "spread > 2\u00a2",
+      "n": 0,
+      "brier": null,
+      "log_loss": null
+    },
+    {
+      "group": "no trades in previous hour",
+      "n": 0,
+      "brier": null,
+      "log_loss": null
+    },
+    {
+      "group": "trades in previous hour",
+      "n": 498,
+      "brier": 0.16901430722891567,
+      "log_loss": 0.507290859713702
+    }
+  ],
+  "collection": {
+    "league": "NBA",
+    "collected_at": "2026-09-18T00:34:25.490996+00:00",
+    "cutoff": {
+      "market_positions_last_updated_ts": "2026-07-19T00:00:00Z",
+      "market_settled_ts": "2026-07-19T00:00:00Z",
+      "orders_updated_ts": "2026-07-19T00:00:00Z",
+      "trades_created_ts": "2026-07-19T00:00:00Z"
+    },
+    "discovery": [
+      {
+        "endpoint": "/markets",
+        "rows": 0,
+        "more_available": false
+      },
+      {
+        "endpoint": "/historical/markets",
+        "rows": 1000,
+        "more_available": true
+      }
+    ],
+    "discovered_markets": 1000,
+    "discovered_events": 500,
+    "selected_events": 500,
+    "linked_events": 499,
+    "bars": 553791,
+    "exclusion_counts": {
+      "missing_or_ambiguous_schedule": 1
+    },
+    "exclusions": [
+      {
+        "event": "KXNBAGAME-26MAY30SASOKC",
+        "reason": "missing_or_ambiguous_schedule"
+      }
+    ],
+    "sampling": "Latest settlement timestamps, capped before exclusions; one 1000-market page per tier",
+    "start_time_limitation": "Latest retrospective scheduled start, not independently verified actual tipoff; schedule revision history unavailable."
+  },
+  "caveats": [
+    "Retrospective milestone start dates; actual tipoff and schedule revision history not independently verified.",
+    "Minute bars provide quote observations, not true last quote-update timestamps or historical depth.",
+    "Capped recent settled cohort, not full-season or random sampling.",
+    "Calibration uses home-team win outcomes. No user P&L, fees, execution, or profitability is estimated.",
+    "Intervals resample UTC dates; dependence across dates or recurring teams may remain.",
+    "Date-blocked validation can cross regular-season/playoff regimes; performance is not guaranteed to generalize."
+  ]
+}
