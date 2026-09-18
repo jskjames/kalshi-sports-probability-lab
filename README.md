@@ -6,6 +6,10 @@ An auditable probability-calibration study of NBA winner contracts using real pu
 
 ## View the project
 
+### Live Dashboard
+
+[Explore the interactive dashboard](https://jskjames.github.io/kalshi-sports-intelligence/)
+
 Open **docs/index.html** in a browser. The dashboard uses bundled data and needs no API key, Python installation, account or backend. Start with the one-hour horizon, inspect the calibration curve, then read the chronological holdout comparison and the game ledger.
 
 - [Findings](docs/findings.md)
@@ -70,7 +74,9 @@ tests/          Data-leakage, schema, scoring and outcome-rule tests
 
 ## Publication
 
-For GitHub Pages, publish the `docs` directory from the default branch. This package has not yet been uploaded to a repository or deployed. See `START_HERE.md` for local review first.
+The interactive dashboard is publicly available through GitHub Pages:
+
+[Open the live dashboard](https://jskjames.github.io/kalshi-sports-intelligence/)
 
 ## Data attribution
 
