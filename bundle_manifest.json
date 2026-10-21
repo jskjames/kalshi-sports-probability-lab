@@ -1,4 +1,5 @@
 {
+  ".github/workflows/ci.yml": "882df69ba5c7f5adaf552241e242e2cfe49c5361385e8b3ef1eba429ef4671cb",
   ".github/workflows/live-markets.yml": "b1ece43f7ed51e8f88ec4b2e64fd2c0e8ffe5b74b5bc35450a6bed9338c134f9",
   ".gitignore": "6b754e8b836cd75a19c7d063e316c868615d4cd3ddebf20a2e20bb38e6295f63",
   "LICENSE": "6f707a65feb8998b4b35f10e723629b7090bc05b0ff1d859aeab2a0db705b4e9",

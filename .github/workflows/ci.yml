@@ -1,0 +1,39 @@
+name: Verify research pipeline
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install project
+        run: python -m pip install -e .
+
+      - name: Run Python tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Rebuild frozen historical analysis
+        run: |
+          python scripts/restore_sample.py
+          python -m kalshi_lab.analysis --root . --league NBA
+
+      - name: Verify SQL results
+        run: python scripts/verify_sql.py
+
+      - name: Verify dashboard controllers
+        run: node tests/dashboard_smoke.cjs
