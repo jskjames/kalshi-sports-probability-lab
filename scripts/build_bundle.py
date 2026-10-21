@@ -15,7 +15,7 @@ for source in sorted((root/'data'/'cache').glob('*.json')):
 files=[p for p in root.rglob('*') if p.is_file() and not any(x in {'data','__pycache__','.git','.venv'} for x in p.relative_to(root).parts) and p.name!='bundle_manifest.json']
 manifest={str(p.relative_to(root)):hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(files)}
 manifest_path=root/'bundle_manifest.json';manifest_path.write_text(json.dumps(manifest,indent=2));files.append(manifest_path)
-archive=root.parent/'kalshi-sports-intelligence.zip'
+archive=root.parent/'kalshi-sports-probability-lab.zip'
 with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as z:
     for p in sorted(files):z.write(p,Path(root.name)/p.relative_to(root))
 with zipfile.ZipFile(archive) as z:

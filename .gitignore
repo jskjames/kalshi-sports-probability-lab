@@ -1,6 +1,7 @@
 data/cache/
 data/raw/
 data/processed/
+data/live/
 data/*.sqlite
 *.log
 __pycache__/

@@ -3,10 +3,11 @@
 ## 먼저 결과 보기
 
 1. ZIP 파일을 완전히 압축 해제합니다.
-2. `kalshi-sports-intelligence` 폴더 안의 `docs`를 엽니다.
+2. `kalshi-sports-probability-lab` 폴더 안의 `docs`를 엽니다.
 3. `index.html`을 Chrome 또는 Edge로 엽니다.
-4. 기본값인 경기 1시간 전 분석부터 봅니다. 표본 수, Brier 점수, 확률 보정 그래프를 확인합니다.
-5. 아래의 검증 구간 결과와 개별 경기 표를 함께 확인합니다.
+4. 상단 **Live Markets**에서 현재 공개 호가 스냅샷을 확인합니다.
+5. 이어서 경기 1시간 전 Historical Research의 표본 수, Brier 점수, 확률 보정 그래프를 확인합니다.
+6. 아래의 검증 구간 결과와 개별 경기 표를 함께 확인합니다.
 
 설치나 Kalshi 로그인이 필요 없습니다. `index.html`만 따로 옮기면 작동하지 않을 수 있으니 `docs` 폴더 전체를 유지하세요.
 
@@ -15,6 +16,8 @@
 “시장이 홈팀 승리 확률을 70%로 표시했을 때, 비슷한 확률의 경기에서 실제로 홈팀이 얼마나 자주 이겼는가?”
 
 시장 확률의 정확도를 분석하는 프로젝트입니다. 현재 로지스틱 모델은 시장 확률을 보정하며, 선수·팀 통계만으로 승자를 예측하는 독립 모델은 아닙니다.
+
+Live Markets는 GitHub Actions가 15분마다 Kalshi 공개 REST API를 호출해 갱신합니다. 화면의 midpoint는 YES bid와 ask의 평균이며, 체결 가격이나 베팅 추천이 아닙니다. Kalshi 계정 연결과 자동 주문 기능은 포함하지 않습니다.
 
 ## 지표 해석
 
@@ -29,4 +32,4 @@
 
 ## 코드 실행과 다음 단계
 
-Python 실행법은 `README.md`, 통계 가정은 `docs/methodology.md`, 확장 방법은 `docs/extending.md`를 확인하세요. 코드와 결과를 이해한 뒤 GitHub에 올리고 `docs` 폴더를 공개 대시보드로 게시할 수 있습니다. 이 패키지는 아직 공개 게시되지 않았습니다.
+Python 실행법은 `README.md`, 통계 가정은 `docs/methodology.md`, 확장 방법은 `docs/extending.md`를 확인하세요. 공개 대시보드는 `https://jskjames.github.io/kalshi-sports-probability-lab/`에서 볼 수 있습니다. 자동 업데이트를 배포하려면 GitHub Pages의 Build and deployment Source가 **GitHub Actions**로 설정되어 있어야 합니다.
