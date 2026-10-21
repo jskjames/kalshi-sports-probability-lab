@@ -1,0 +1,61 @@
+name: Update live NBA markets
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  collect-test-deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install project
+        run: python -m pip install -e .
+
+      - name: Recover rolling probability history
+        run: |
+          if ! curl --fail --silent --show-error --location --output /tmp/live-data.js https://jskjames.github.io/kalshi-sports-probability-lab/live-data.js; then
+            rm -f /tmp/live-data.js
+          fi
+
+      - name: Collect public NBA market snapshot
+        run: python -m kalshi_lab.live --root . --prior-dashboard /tmp/live-data.js --deploy-only
+
+      - name: Run Python tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run dashboard controller test
+        run: node tests/dashboard_smoke.cjs
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload static site
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: docs
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

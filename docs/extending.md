@@ -18,4 +18,4 @@ The current logistic model recalibrates market probabilities. It does not indepe
 
 ## Prospective validation
 
-Record schedule snapshots and bid/ask quotes as they occur, including retrieval time, market status and available depth. Freeze the research specification and scoring code before accumulating a new test period. Add fees and conservative fill assumptions only in a separately labelled execution study. Probability calibration alone cannot establish a profitable strategy.
+The automated monitor now records scheduled 15-minute public snapshots and retrieval time, but the deployed artifact retains only a compact rolling trail. A true prospective validation dataset should use durable external storage, preserve bid/ask and schedule revisions beyond seven days, and freeze the scoring specification before accumulating a new test period. Add fees and conservative fill assumptions only in a separately labelled execution study. Probability calibration alone cannot establish a profitable strategy.

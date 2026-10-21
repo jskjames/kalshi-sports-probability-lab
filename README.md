@@ -2,7 +2,7 @@
 
 **When a sports market implies a 70% win probability, how often does that team win?**
 
-An auditable probability-calibration study of NBA winner contracts using real public Kalshi market, settlement, milestone and minute-candlestick data. Built for research, with an interactive dashboard and a reproducible Python/SQL pipeline.
+An auditable probability-calibration study and automated NBA market monitor using real public Kalshi data. The project combines a reproducible Python/SQL historical pipeline with 15-minute live REST API snapshots, GitHub Actions deployment, and one interactive dashboard.
 
 ## View the project
 
@@ -10,7 +10,7 @@ An auditable probability-calibration study of NBA winner contracts using real pu
 
 [Explore the interactive dashboard](https://jskjames.github.io/kalshi-sports-probability-lab/)
 
-Open **docs/index.html** in a browser. The dashboard uses bundled data and needs no API key, Python installation, account or backend. Start with the one-hour horizon, inspect the calibration curve, then read the chronological holdout comparison and the game ledger.
+Open **docs/index.html** in a browser. The dashboard uses bundled data and needs no API key, Python installation, account or backend. Start with **Live Markets** for the latest scheduled snapshot, then inspect the historical one-hour calibration curve, chronological holdout comparison and game ledger.
 
 - [Findings](docs/findings.md)
 - [Methodology and limitations](docs/methodology.md)
@@ -19,7 +19,8 @@ Open **docs/index.html** in a browser. The dashboard uses bundled data and needs
 
 ## What this demonstrates
 
-- **Data engineering:** paced public-API ingestion, cached responses, historical/live routing, event-to-schedule joins, schema normalization and indexed SQLite tables.
+- **Data engineering:** paced public-API ingestion, cached historical responses, uncached live snapshots, event-to-schedule joins, schema normalization and indexed SQLite tables.
+- **Automation:** GitHub Actions collects public NBA quotes every 15 minutes, tests both pipelines, and redeploys the static dashboard without committing high-frequency data to repository history.
 - **Statistical analysis:** Brier score, log loss, Wilson intervals, paired date-block bootstrap and matched-game horizon comparisons.
 - **Machine learning:** regularized logistic probability calibration selected on validation data, with outcome-resolution purging before held-out evaluation.
 - **Product analytics:** interactive filters, transparent exclusions, sensitivity analysis and a searchable evidence ledger.
@@ -49,10 +50,19 @@ python -m kalshi_lab.analysis --root . --league NBA
 
 Collection can take many minutes. GET requests are cached and paced; repeating the collection reuses cached responses. Remove or relocate `data/cache` if intentionally collecting a fresh snapshot. Updated API data can change results. The collector caps discovery to one page per storage tier and the newest requested number of settled events **before** exclusions; this is not a complete season or a random sample.
 
+To collect one current public-market snapshot locally:
+
+```bash
+python -m kalshi_lab.live --root .
+```
+
+This writes a rolling local snapshot file under `data/live/` and refreshes `docs/live-data.js`. No Kalshi account, API key or private endpoint is used. The deployed site uses the same collector but preserves only a lightweight 24-hour probability trail in the Pages artifact, avoiding 96 data commits per day.
+
 ## Repository map
 
 ```text
-src/kalshi_lab/   API client, market adapters, collection and analysis
+src/kalshi_lab/   API client, live collector, market adapters and analysis
+.github/workflows 15-minute collection, tests and Pages deployment
 sql/             Reusable research queries
 outputs/         Game/snapshot CSVs, holdout predictions and result JSON
 sample/          Frozen compressed observations and collection metadata
@@ -66,6 +76,9 @@ tests/          Data-leakage, schema, scoring and outcome-rule tests
 ## Scope and limitations
 
 - NBA, game-winner contracts, one home-team outcome per game; 24h, 6h, 1h and 5m before the recorded scheduled start.
+- Live quotes are scheduled 15-minute snapshots, not streaming data. A delayed GitHub Actions run can make the displayed data older than 15 minutes.
+- GitHub automatically disables scheduled workflows in public repositories after 60 days without repository activity; a manual workflow run or re-enable may then be required.
+- Live midpoint is the average of the displayed YES bid and ask. It is not a transaction price or guarantee of executable size.
 - Schedule timestamps are retrospective Kalshi milestones. Actual tipoff and historical schedule revisions have not been independently verified.
 - Minute bar age does not establish the age of the underlying quote. Historical depth and executable size are unavailable here.
 - Capped recent data can cross regular-season/playoff regimes. Small holdout samples limit claims about generalization.
@@ -94,3 +107,5 @@ node tests/dashboard_smoke.cjs
 ```
 
 These checks validate timestamp cutoffs, settlement rules, score formulas, date splits, output consistency, SQL parity and dashboard controller behavior. They do not substitute for checking desktop and mobile appearance in a real browser.
+
+The live deployment workflow additionally runs the full Python suite and dashboard controller test before publishing. GitHub Pages must use **GitHub Actions** as its build source for scheduled deployments.

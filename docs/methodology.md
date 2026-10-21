@@ -4,7 +4,27 @@
 Does the probability implied by Kalshi's NBA winner markets align with recorded
 contract outcomes? Does a simple recalibration improve unseen chronological
 predictions? The research unit is **one home-team YES contract per game**.
-This is retrospective research, not a live forecast service or trading strategy.
+The scored calibration study is retrospective. A separate monitor displays current
+public quotes, but it does not generate independent forecasts or trading signals.
+
+## Live monitor contract
+Every scheduled run requests open `KXNBAGAME` events with nested markets from the
+public production REST API. It accepts exactly two winner contracts per event and
+records retrieval time, scheduled occurrence time, YES bid/ask and displayed sizes,
+last price, 24-hour/cumulative volume, and open interest. No account authentication
+or portfolio endpoint is permitted by the client.
+
+The displayed probability is the midpoint of a valid two-sided YES quote where
+0 ≤ bid ≤ ask ≤ 1. Missing or crossed quotes remain unavailable. This midpoint is
+not a trade, fair-value estimate, or guarantee of executable size. The run is
+scheduled every 15 minutes, but GitHub Actions can start late or be temporarily
+unavailable; the dashboard labels snapshots older than 45 minutes as delayed.
+
+The deployed artifact carries the current full snapshot and at most 97 compact
+probability snapshots (approximately 24 hours). It recovers that compact trail from
+the previously deployed page before each deployment, so high-frequency data do not
+create 96 repository commits per day. Local runs may retain seven days under
+`data/live/`, which is excluded from Git.
 
 ## Data and sampling
 The collector reads the public production Kalshi API. It captures one page of
@@ -101,7 +121,8 @@ of uncertainty. Fixed chronological splits may cross regular-season/playoff
 regimes and must not be called proof of future performance.
 
 ## Reproduction and extension
-`client.py` owns public GETs, cache, provenance, retry and pacing. `collect.py`
+`client.py` owns public GETs, cache, provenance, retry and pacing. `live.py` owns
+uncached current-event snapshots, bounded retention and the live dashboard export. `collect.py`
 owns league/event discovery and schedule links. `markets.py` defines a typed
 outcome-adapter boundary. `analysis.py` owns timestamp-safe snapshots, scoring,
 quality audit, chronological model comparison and dashboard exports. The static
@@ -115,6 +136,8 @@ snapshots and declare their eligible cohort and timestamp requirements.
 
 ## Sources
 - https://docs.kalshi.com/getting_started/historical_data
+- https://docs.kalshi.com/getting_started/quick_start_market_data
+- https://docs.kalshi.com/api-reference/events/get-events
 - https://docs.kalshi.com/api-reference/market/get-market-candlesticks
 - https://docs.kalshi.com/api-reference/milestone/get-milestones
 - https://docs.kalshi.com/api-reference/historical/get-historical-markets
