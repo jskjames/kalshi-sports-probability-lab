@@ -17,7 +17,7 @@
 
 시장 확률의 정확도를 분석하는 프로젝트입니다. 현재 로지스틱 모델은 시장 확률을 보정하며, 선수·팀 통계만으로 승자를 예측하는 독립 모델은 아닙니다.
 
-Live Markets는 GitHub Actions가 15분마다 Kalshi 공개 REST API를 호출해 갱신합니다. 화면의 midpoint는 YES bid와 ask의 평균이며, 체결 가격이나 베팅 추천이 아닙니다. Kalshi 계정 연결과 자동 주문 기능은 포함하지 않습니다.
+Live Markets는 GitHub Actions가 5분마다 갱신을 재시도하고, 기존 스냅샷이 15분 이상 되었을 때 Kalshi 공개 REST API를 호출합니다. 화면의 midpoint는 YES bid와 ask의 평균이며, 체결 가격이나 베팅 추천이 아닙니다. Kalshi 계정 연결과 자동 주문 기능은 포함하지 않습니다.
 
 ## 지표 해석
 

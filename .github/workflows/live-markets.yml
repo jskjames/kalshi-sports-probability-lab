@@ -2,7 +2,10 @@ name: Update live NBA markets
 
 on:
   schedule:
-    - cron: "7,22,37,52 * * * *"
+    # Retry every five minutes because GitHub may delay or drop scheduled runs.
+    # The cadence check below only collects when the deployed snapshot is at
+    # least 15 minutes old.
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -39,23 +42,42 @@ jobs:
             rm -f /tmp/live-data.js
           fi
 
+      - name: Check whether a refresh is due
+        id: cadence
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            due=true
+          else
+            due=$(python -m kalshi_lab.live --prior-dashboard /tmp/live-data.js --check-due --min-age-minutes 15)
+          fi
+          echo "due=$due" >> "$GITHUB_OUTPUT"
+          echo "Refresh due: $due"
+
       - name: Collect public NBA market snapshot
+        if: steps.cadence.outputs.due == 'true'
         run: python -m kalshi_lab.live --root . --prior-dashboard /tmp/live-data.js --deploy-only
 
       - name: Run Python tests
+        if: steps.cadence.outputs.due == 'true'
         run: python -m unittest discover -s tests -v
 
       - name: Run dashboard controller test
+        if: steps.cadence.outputs.due == 'true'
         run: node tests/dashboard_smoke.cjs
 
       - name: Configure GitHub Pages
+        if: steps.cadence.outputs.due == 'true'
         uses: actions/configure-pages@v6
 
       - name: Upload static site
+        if: steps.cadence.outputs.due == 'true'
         uses: actions/upload-pages-artifact@v5
         with:
           path: docs
 
       - name: Deploy GitHub Pages
+        if: steps.cadence.outputs.due == 'true'
         id: deployment
         uses: actions/deploy-pages@v5

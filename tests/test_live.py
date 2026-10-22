@@ -12,6 +12,7 @@ from kalshi_lab.live import (
     normalize_event,
     normalize_market,
     payload_from_prior,
+    refresh_due,
 )
 
 
@@ -104,6 +105,19 @@ class LiveMarketTests(unittest.TestCase):
             path.write_text("alert('not JSON')")
             with self.assertRaisesRegex(ValueError, "unexpected format"):
                 load_dashboard(path)
+
+    def test_scheduled_retry_only_refreshes_stale_dashboard(self):
+        now = datetime(2026, 10, 22, 4, 30, tzinfo=timezone.utc)
+        recent = {"generated_at": "2026-10-22T04:16:00Z"}
+        due = {"generated_at": "2026-10-22T04:15:00Z"}
+        self.assertFalse(refresh_due(recent, now=now, min_age_minutes=15))
+        self.assertTrue(refresh_due(due, now=now, min_age_minutes=15))
+        self.assertTrue(refresh_due(None, now=now, min_age_minutes=15))
+        self.assertTrue(refresh_due({"generated_at": "invalid"}, now=now, min_age_minutes=15))
+
+    def test_refresh_due_requires_timezone_aware_clock(self):
+        with self.assertRaisesRegex(ValueError, "timezone-aware"):
+            refresh_due({"generated_at": "2026-10-22T04:00:00Z"}, now=datetime(2026, 10, 22, 4, 30))
 
 
 if __name__ == "__main__":

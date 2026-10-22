@@ -20,7 +20,7 @@ Open **docs/index.html** in a browser. The dashboard uses bundled data and needs
 ## What this demonstrates
 
 - **Data engineering:** paced public-API ingestion, cached historical responses, uncached live snapshots, event-to-schedule joins, schema normalization and indexed SQLite tables.
-- **Automation:** GitHub Actions collects public NBA quotes every 15 minutes, tests both pipelines, and redeploys the static dashboard without committing high-frequency data to repository history.
+- **Automation:** GitHub Actions retries every five minutes and collects public NBA quotes once the deployed snapshot is at least 15 minutes old, then tests both pipelines and redeploys the static dashboard without committing high-frequency data to repository history.
 - **Statistical analysis:** Brier score, log loss, Wilson intervals, paired date-block bootstrap and matched-game horizon comparisons.
 - **Machine learning:** regularized logistic probability calibration selected on validation data, with outcome-resolution purging before held-out evaluation.
 - **Product analytics:** interactive filters, transparent exclusions, sensitivity analysis and a searchable evidence ledger.
@@ -62,7 +62,7 @@ This writes a rolling local snapshot file under `data/live/` and refreshes `docs
 
 ```text
 src/kalshi_lab/   API client, live collector, market adapters and analysis
-.github/workflows 15-minute collection, tests and Pages deployment
+.github/workflows 5-minute retry cadence, 15-minute collection guard, tests and Pages deployment
 sql/             Reusable research queries
 outputs/         Game/snapshot CSVs, holdout predictions and result JSON
 sample/          Frozen compressed observations and collection metadata
@@ -76,7 +76,7 @@ tests/          Data-leakage, schema, scoring and outcome-rule tests
 ## Scope and limitations
 
 - NBA, game-winner contracts, one home-team outcome per game; 24h, 6h, 1h and 5m before the recorded scheduled start.
-- Live quotes are scheduled 15-minute snapshots, not streaming data. A delayed GitHub Actions run can make the displayed data older than 15 minutes.
+- Live quotes target a 15-minute snapshot cadence, not streaming data. GitHub Actions retries every five minutes when a snapshot is not yet due, but a delayed or dropped scheduled run can still make the displayed data older than 15 minutes.
 - GitHub automatically disables scheduled workflows in public repositories after 60 days without repository activity; a manual workflow run or re-enable may then be required.
 - Live midpoint is the average of the displayed YES bid and ask. It is not a transaction price or guarantee of executable size.
 - Schedule timestamps are retrospective Kalshi milestones. Actual tipoff and historical schedule revisions have not been independently verified.
