@@ -16,9 +16,10 @@ or portfolio endpoint is permitted by the client.
 
 The displayed probability is the midpoint of a valid two-sided YES quote where
 0 ≤ bid ≤ ask ≤ 1. Missing or crossed quotes remain unavailable. This midpoint is
-not a trade, fair-value estimate, or guarantee of executable size. The run is
-scheduled every 15 minutes, but GitHub Actions can start late or be temporarily
-unavailable; the dashboard labels snapshots older than 45 minutes as delayed.
+not a trade, fair-value estimate, or guarantee of executable size. GitHub Actions
+requests a retry every five minutes and collects only when the deployed snapshot
+is at least 15 minutes old. Scheduled runs can still start late or be dropped;
+the dashboard labels snapshots older than 45 minutes as delayed.
 
 The deployed artifact carries the current full snapshot and at most 97 compact
 probability snapshots (approximately 24 hours). It recovers that compact trail from

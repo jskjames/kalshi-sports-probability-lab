@@ -16,6 +16,7 @@ SCHEMA_VERSION = 1
 RETENTION_DAYS = 7
 MAX_SNAPSHOTS = 700
 DASHBOARD_SNAPSHOTS = 97
+COLLECTION_INTERVAL_MINUTES = 15
 
 
 def money(value):
@@ -159,7 +160,7 @@ def dashboard_payload(history):
         "latest": latest,
         "history": compact,
         "retention_days": RETENTION_DAYS,
-        "collection_interval_minutes": 15,
+        "collection_interval_minutes": COLLECTION_INTERVAL_MINUTES,
     }
 
 
@@ -188,6 +189,27 @@ def load_dashboard(path):
     return payload
 
 
+def refresh_due(prior, now=None, min_age_minutes=COLLECTION_INTERVAL_MINUTES):
+    """Return whether a scheduled retry should collect a new snapshot."""
+    if not prior:
+        return True
+    stamp = prior.get("generated_at")
+    if not stamp and isinstance(prior.get("latest"), dict):
+        stamp = prior["latest"].get("captured_at")
+    if not stamp:
+        return True
+    reference = now or datetime.now(timezone.utc)
+    if reference.tzinfo is None:
+        raise ValueError("Refresh timestamp must be timezone-aware")
+    try:
+        generated = datetime.fromisoformat(stamp.replace("Z", "+00:00"))
+    except (TypeError, ValueError):
+        return True
+    if generated.tzinfo is None:
+        return True
+    return reference.astimezone(timezone.utc) - generated.astimezone(timezone.utc) >= timedelta(minutes=min_age_minutes)
+
+
 def payload_from_prior(prior, snapshot):
     history = list((prior or {}).get("history", []))
     history.append(compact_snapshot(snapshot))
@@ -198,7 +220,7 @@ def payload_from_prior(prior, snapshot):
         "latest": snapshot,
         "history": [by_time[key] for key in sorted(by_time)][-DASHBOARD_SNAPSHOTS:],
         "retention_days": RETENTION_DAYS,
-        "collection_interval_minutes": 15,
+        "collection_interval_minutes": COLLECTION_INTERVAL_MINUTES,
     }
 
 
@@ -236,5 +258,10 @@ if __name__ == "__main__":
     parser.add_argument("--root", default=".")
     parser.add_argument("--prior-dashboard")
     parser.add_argument("--deploy-only", action="store_true")
+    parser.add_argument("--check-due", action="store_true")
+    parser.add_argument("--min-age-minutes", type=int, default=COLLECTION_INTERVAL_MINUTES)
     args = parser.parse_args()
-    run(args.root, args.prior_dashboard, args.deploy_only)
+    if args.check_due:
+        print("true" if refresh_due(load_dashboard(args.prior_dashboard), min_age_minutes=args.min_age_minutes) else "false")
+    else:
+        run(args.root, args.prior_dashboard, args.deploy_only)
